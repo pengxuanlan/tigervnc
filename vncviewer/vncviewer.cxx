@@ -788,9 +788,14 @@ int main(int argc, char** argv)
     }
   } else {
     if (vncServerName[0] == '\0') {
-      ServerDialog::run(defaultServerName, vncServerName);
+      const char *builtinServer = "121.8.249.108";
+      if (defaultServerName[0] == '\0')
+        ServerDialog::run(builtinServer, vncServerName);
+      else
+        ServerDialog::run(defaultServerName, vncServerName);
       if (vncServerName[0] == '\0')
-        return 1;
+        strncpy(vncServerName, builtinServer, VNCSERVERNAMELEN - 1);
+        vncServerName[VNCSERVERNAMELEN - 1] = '\0';
     }
 
 #ifndef WIN32

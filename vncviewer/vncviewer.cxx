@@ -793,9 +793,10 @@ int main(int argc, char** argv)
         ServerDialog::run(builtinServer, vncServerName);
       else
         ServerDialog::run(defaultServerName, vncServerName);
-      if (vncServerName[0] == '\0')
+      if (vncServerName[0] == '\0') {
         strncpy(vncServerName, builtinServer, VNCSERVERNAMELEN - 1);
         vncServerName[VNCSERVERNAMELEN - 1] = '\0';
+      }
     }
 
 #ifndef WIN32
